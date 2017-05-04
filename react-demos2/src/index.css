@@ -2,4 +2,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  opacity: .3;
 }
+
+#root {
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	background: linear-gradient(to top left, rgba(155,122,45,.5), rgba(245,25,55,1));
+}
+

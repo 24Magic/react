@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import 'normalize.css'
+import './reset.css'
 import './App.css';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem'
 
 class App extends React.Component {
 
-  construtor(props){
+  constructor(props){
+
     super(props)
     this.state = {
       newTodo: 'test',
@@ -19,7 +22,7 @@ class App extends React.Component {
 
   render() {
 
-    let todos = this.state.todoList.map((items, index) => {
+    let todos = this.state.todoList.map((item, index) => {
       return <li>{item.title}</li>
       return (
         <li>
@@ -31,20 +34,11 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <h1>我的待办</h1>
+        <h2>我的待办</h2>
         <div className="inputWrapper">
 
           <TodoInput content={this.state.newTodo}/>
-        </div>
-        <p className="App-intro">
-          To get started, edit<code>src/App.js</code> and save to reload.
-
-        <input type="text" value={this.state.newTodo}/>
-        </div>
-        <p className="App-intro">
-          To get started, edit<code>src/App.js</code> and save to load.
-
-        </p>
+        </div>        
         <ol>
           {todos}
         </ol>
