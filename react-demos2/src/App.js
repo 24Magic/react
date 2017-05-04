@@ -37,7 +37,7 @@ class App extends React.Component {
         <h2>我的待办</h2>
         <div className="inputWrapper">
 
-          <TodoInput content={this.state.newTodo}/>
+          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
         </div>        
         <ol>
           {todos}
@@ -45,6 +45,11 @@ class App extends React.Component {
       </div>
     );
   }
+
+  addTodo(){
+    console.log('添加todo函数')
+  }
+
 }
 
 

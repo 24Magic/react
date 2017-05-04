@@ -9,7 +9,7 @@ export default class TodoInput extends React.Component {
 
 	submit(e){
 		if(e.key === 'Enter') {
-			console.log('按下回车')
+			this.props.onSubmit.call()
 		}
 	}
 }
