@@ -30,14 +30,12 @@ class App extends React.Component {
       )
     })
 
-    console.log(todos)
-
     return (
       <div className="App">
         <h2>我的待办</h2>
         <div className="inputWrapper">
 
-          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}.bind(this)/>
+          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
         </div>        
         <ol>
           {todos}

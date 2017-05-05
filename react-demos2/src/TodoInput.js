@@ -9,7 +9,7 @@ export default class TodoInput extends React.Component {
 
 	submit(e){
 		if(e.key === 'Enter') {
-			this.props.onSubmit.(e);
+			this.props.onSubmit(e);
 		}
 	}
 }
