@@ -25,7 +25,7 @@ class App extends React.Component {
       return <li>{item.title}</li>
       return (
         <li key={index}>
-          <TodoItem todo={item}/>
+          <TodoItem todo={item} onToggle={this.toggle.bind(this)}/>
         </li>
       )
     })
@@ -35,13 +35,22 @@ class App extends React.Component {
         <h2>我的待办</h2>
         <div className="inputWrapper">
 
-          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo.bind(this)}/>
+          <TodoInput content={this.state.newTodo}
+            onChange={this.changeTitle.bind(this)}
+            onSubmit={this.addTodo.bind(this)}/>
         </div>        
         <ol>
           {todos}
         </ol>
       </div>
     );
+  }
+
+  changeTitle(e){
+    this.setState({
+      newTodo: e.target.value,
+      todoList: this.state.todoList 
+    })
   }
 
   addTodo(e){
@@ -56,6 +65,11 @@ class App extends React.Component {
       newTodo: '',
       todoList: this.state.todoList
     })
+  }
+
+  toggle(e, todo){
+    todo.status = todo.status === 'completed' ? '' : 'completed'
+    this.setState(this.state)
   }
 
 }
