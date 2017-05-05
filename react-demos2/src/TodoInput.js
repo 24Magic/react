@@ -1,8 +1,11 @@
 import React, {component} from 'react'
+import './TodoInput.css'
+
 
 export default class TodoInput extends React.Component {
 	render(){
-		return <input type="text" value={this.props.content}
+		return <input type="text" className='TodoInput' 
+				value={this.props.content}
 				onChange={this.changeTitle.bind(this)}
 				onKeyPress={this.submit.bind(this)}
 		/>

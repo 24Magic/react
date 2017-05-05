@@ -1,4 +1,5 @@
 import React, {component} from 'react'
+import './TodoItem.css'
 
 export default class TodoItem extends React.Component {
 	render(){
