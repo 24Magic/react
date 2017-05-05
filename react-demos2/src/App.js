@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import 'normalize.css'
 import './reset.css'
 import './App.css'
+
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 
@@ -22,6 +23,7 @@ class App extends React.Component {
     let todos = this.state.todoList
     .filter((item)=>!item.deleted)
     .map((item, index) => {
+      console.log(index)
       return <li>{item.title}</li>
       return (
         <li key={index}>
