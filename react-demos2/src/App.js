@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import 'normalize.css'
 import './reset.css'
-import './App.css';
-import TodoInput from './TodoInput';
+import './App.css'
+import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 
 class App extends React.Component {
@@ -12,9 +12,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       newTodo: '',
-      todoList: [
-
-      ]
+      todoList: []
     }
   }
 
@@ -43,7 +41,7 @@ class App extends React.Component {
             onChange={this.changeTitle.bind(this)}
             onSubmit={this.addTodo.bind(this)}/>
         </div>        
-        <ol>
+        <ol className='todoList'>
           {todos}
         </ol>
       </div>
