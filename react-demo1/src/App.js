@@ -45,16 +45,20 @@ class App extends Component {
     )
   }
 
+  componentDidiUpdate(){
+    localStorage.save('todoList', this.state.todoList)
+  }
+
   delete(event, todo){
     todo.deleted = true
     this.setState(this.state)
-    localStorage.save('todoList', this.state.todoList)
+
   }
 
   toggle(e, todo){
     todo.status = todo.status === 'completed' ? '' : 'completed'
     this.setState(this.state)
-    localStorage.save('todoList', this.state.todoList)
+
   }
 
   changeTitle(event){
@@ -62,7 +66,7 @@ class App extends Component {
       newTodo: event.target.value,
       todoList: this.state.todoList
     })
-    localStorage.save('todoList', this.state.todoList)
+
   }
 
   addTodo(event){
@@ -76,7 +80,7 @@ class App extends Component {
       newTodo: '',
       todoList: this.state.todoList   //每次添加todo后重置todo
     })
-    localStorage.save('todoList', this.state.todoList)
+
   }
 }
 
