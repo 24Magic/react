@@ -4,7 +4,7 @@ import 'normalize.css'
 import './reset.css'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
-import * as localStorage from './localStorage'
+
 
 
 
@@ -16,7 +16,7 @@ class App extends Component {
     this.state={
      
         newTodo: '',
-        todoList: localStorage.load('todoList') || []
+        todoList: []
       
     }
   }
@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   componentDidiUpdate(){
-    localStorage.save('todoList', this.state.todoList)
+
   }
 
   delete(event, todo){
