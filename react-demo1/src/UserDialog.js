@@ -10,7 +10,8 @@ export default class UserDialog extends Component {
 			selected: 'signUp',
 			formData: {
 				username: '',
-				password: ''
+				password: '',
+				email: ''
 			}
 		}
 	}
@@ -27,6 +28,11 @@ export default class UserDialog extends Component {
 					<label>密码</label>
 					<input type="password" value={this.state.formData.password}
 					 onChange={this.changeFormData.bind(this, 'password')} />
+				</div>
+				<div classNmae="row">
+					<label>邮箱</label>
+					<input type="email" value={this.state.formData.email}
+					 onChange={this.changeFormData.bind(this, 'email')} />
 				</div>
 				<div classNmae="row actions">
 					<button type="submit">注册</button>
@@ -75,14 +81,14 @@ export default class UserDialog extends Component {
 
 	signUp(e){
 		e.preventDefault()
-		let {username, password} = this.state.formData
+		let {username, password, email} = this.state.formData
 		let success = (user)=>{
 			console.log(user)
 		}
 		let error = (error)=>{
 			console.log(error)
 		}
-		signUp(username, password, success, error)
+		signUp(username, password, email, success, error)
 	}
 	signIn(e){}
 
