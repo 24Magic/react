@@ -24,17 +24,17 @@ export default class UserDialog extends Component {
 					<input type="text" value={this.state.formData.username}
 					 onChange={this.changeFormData.bind(this, 'username')} />
 				</div>
-				<div classNmae="row">
+				<div className="row">
 					<label>密码</label>
 					<input type="password" value={this.state.formData.password}
 					 onChange={this.changeFormData.bind(this, 'password')} />
 				</div>
-				<div classNmae="row">
+				<div className="row">
 					<label>邮箱</label>
 					<input type="email" value={this.state.formData.email}
 					 onChange={this.changeFormData.bind(this, 'email')} />
 				</div>
-				<div classNmae="row actions">
+				<div className="row actions">
 					<button type="submit">注册</button>
 				</div>
 			</form>
@@ -46,12 +46,12 @@ export default class UserDialog extends Component {
 					<input type="text" value={this.state.formData.username}
 					 onChange={this.changeFormData.bind(this, 'username')} />
 				</div>
-				<div classNmae="row">
+				<div className="row">
 					<label>密码</label>
 					<input type="password" value={this.state.formData.password}
 					 onChange={this.changeFormData.bind(this, 'password')} />
 				</div>
-				<div classNmae="row actions">
+				<div className="row actions">
 					<button type="submit">登陆</button>
 				</div>
 			</form>

@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 import './TodoItem.css'
-
+import '../public/iconfont/iconfont.css'
 export default class TodoItem extends Component {
 	render(){
 		return (
 			<div className='TodoItem'>
-				<input type="checkbox" checked={this.props.todo.status==='completed'}
-				 onChange={this.toggle.bind(this)}/>
+				<input className="check" type="checkbox" checked={this.props.todo.status==='completed'}
+				 onChange={this.toggle.bind(this)}/><i className="iconfont icon-attachment"></i>
 				 <span className='title'>{this.props.todo.title}</span>		
-				<button onClick={this.delete.bind(this)}>删除</button>
+				<button className="delete" onClick={this.delete.bind(this)}><i className="iconfont icon-delete"></i></button>
 			</div>
 		)
 	}
@@ -20,4 +20,8 @@ export default class TodoItem extends Component {
 	toggle(e){
 		this.props.onToggle(e, this.props.todo)
 	}
+
+	// this.querySelector('.TodoItem>input').addEventListener('click', function(){
+	// 	document.querySelector('.TodoItem>.title').classList.toggle('active')
+	// })
 }

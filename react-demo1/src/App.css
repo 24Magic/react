@@ -1,6 +1,7 @@
 .App {
-  color: #333;
-  border: 1px solid #aaa;
+  position: relative;
+  color: #404040;
+  border: 1px solid #eee;
   border-radius: 4px;
   background: #fff;
   margin: 2em;
@@ -10,10 +11,63 @@
   box-shadow: 0 0 1em hsla(0,0%,0%,0,0.15);
 }
 
-.App > .todoList > li:nth-child(odd){
-  background: #eee;
+.App > .inputWrapper > .edit > .iconfont{
+  font-size: 20px;
+  opacity: .7
 }
 
-.App > .todoList > li:nth-child(even){
-  background: transparent;
+.App > .todoList {
+  position: absolute;
+  height: 441px;
+  overflow: hidden;
+  opacity: .7;
+}
+
+.App > .logOut {
+  position: absolute;
+  top: .7em;
+  right: 1em;
+  padding: .4em .8em;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: all .3s;
+  opacity: .5;
+}
+
+.App > .logOut:hover {
+  border: 1px solid #d0d0d0;
+  background-color: #eee;
+  opacity: .7;
+}
+
+.App > .bigTitle {
+  margin: 1em;
+  text-align: center;
+  font-size: 18px;
+  opacity: .7;
+}
+
+.App > .bigTitle > span {
+  color: #66ccff;
+}
+
+.App > .logOut > span {
+  font-size: 15px;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.App > .unfold {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+}
+
+.App > .unfold > .iconfont {
+  font-size: 26px;
+  cursor: pointer;
+  opacity: .7;
 }

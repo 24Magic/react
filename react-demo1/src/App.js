@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import 'normalize.css'
 import './reset.css'
+import '../public/iconfont/iconfont.css' 
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
-import {getCurrentUser} from './leanCloud'
+import {getCurrentUser, signOut} from './leanCloud'
 
 
 
@@ -34,8 +35,13 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>{this.state.user.username || '我'}的待办</h1>
+        <div className="bigTitle"><span>{this.state.user.username || '我'}</span> の Todo       
+        </div>
+        <button className="logOut">
+          {this.state.user.id ? <span onClick={this.signOut.bind(this)}>LogOut</span>:null}
+        </button>
         <div className="inputWrapper">
+        <span className="edit"><i className="iconfont icon-edit"></i></span>
         <TodoInput content={this.state.newTodo}
          onChange={this.changeTitle.bind(this)}
          onSubmit={this.addTodo.bind(this)}
@@ -45,12 +51,20 @@ class App extends Component {
         {todos}
         </ol>   
         {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUp.bind(this)}/> }
+        <span className="unfold"><i className="iconfont icon-moreunfold"></i></span>
       </div>
     )
   }
 
   componentDidiUpdate(){
 
+  }
+
+  signOut(){
+    signOut()
+    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    stateCopy.user = {}
+    this.setState(stateCopy)
   }
 
   onSignUp(user){
@@ -67,8 +81,10 @@ class App extends Component {
 
   toggle(e, todo){
     todo.status = todo.status === 'completed' ? '' : 'completed'
+    e.parentNode.childNode('.title').style.textDecoration
+     = e.parentNode.childNode('.title').style.textDecoration === 'none' ? 'line-through' : 'none'
     this.setState(this.state)
-
+    console.log(todo.status)
   }
 
   changeTitle(event){
