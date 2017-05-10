@@ -5,7 +5,7 @@ import './reset.css'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
-
+import {getCurrentUser} from './leanCloud'
 
 
 
@@ -14,7 +14,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state={
-        user: {},
+        user: getCurrentUser()||{},
         newTodo: '',
         todoList: []
       
@@ -43,8 +43,8 @@ class App extends Component {
         </div>
         <ol className="todoList">
         {todos}
-        </ol>
-        <UserDialog onSignUp={this.onSignUp.bind(this)} />
+        </ol>   
+        {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUp.bind(this)}/> }
       </div>
     )
   }
