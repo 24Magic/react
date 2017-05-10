@@ -93,7 +93,7 @@ export default class UserDialog extends Component {
 	signIn(e){}
 
 	changeFormData(key, e){
-		let stateCopy = JSON.parse(JSON.stringify(this.state))	//使用JSON深拷贝
+		let stateCopy = JSON.parse(JSON.stringify(this.state))	//因为不能直接修改this.state, 使用JSON深拷贝
 		stateCopy.formData[key] = e.target.value
 		this.setState(stateCopy)
 	}
