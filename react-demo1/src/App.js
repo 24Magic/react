@@ -50,7 +50,13 @@ class App extends Component {
         <ol className="todoList">
         {todos}
         </ol>   
-        {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUp.bind(this)}/> }
+        {this.state.user.id 
+          ? null : 
+          <UserDialog 
+          onSignUp={this.onSignUp.bind(this)}
+          onSignIn={this.onSignIn.bind(this)}
+          /> 
+        }
         <span className="unfold"><i className="iconfont icon-moreunfold"></i></span>
       </div>
     )
@@ -68,6 +74,12 @@ class App extends Component {
   }
 
   onSignUp(user){
+    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    stateCopy.user = user
+    this.setState(stateCopy)
+  }
+
+  onSignIn(user){
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = user
     this.setState(stateCopy)
