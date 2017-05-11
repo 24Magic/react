@@ -1,9 +1,10 @@
 .UserDialog-Wrapper{
 	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	top: 50%;
+	left: 50%;
+	margin-top: -98px;
+	margin-left: -125px;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -11,6 +12,7 @@
 }
 
 .UserDialog{
+	width: 250px;
 	font-size: 15px;
 	background-color: #fff;
 	border: 1px solid #eee;
@@ -30,43 +32,44 @@
 	cursor: pointer;
 }
 
+.UserDialog > nav > label > input {
+	display: none;
+}
+
+.UserDialog > nav > label > span:hover {
+	border-bottom: 1px solid #333;
+}
+
 .UserDialog > .panes{
 	padding: 0 1em 1em;
+	font-size: small;
 }
 
 .UserDialog > .panes > form > div {
 	margin-top: 5px;
-	display: flex;
-}
-
-.UserDialog > .panes > form > div > label {
-	flex: 1;
 }
 
 .UserDialog > .panes > form > div > input{
+	width: 100%;
 	padding: .3em .6em;
 	background-color: #fff !important;
-	border: 1px solid #a0a0a0;
+	border: 1px solid #fff;
+	border-bottom: 1px solid #a0a0a0;
 	border-radius: 3px;
 	outline: none;
-	flex: 3;
 }
 
 .UserDialog  form > .row{
-	display: flex;
-	padding: .3em 0;
-}
-
-.UserDialog  form > .row > label:first-child{
-	width: 4em;
+	padding: .5em 0;
 }
 
 .UserDialog  form > .row.actions{
 	transform: translateX(50%);
-	margin-left: -40px;
+	margin-left: -55px;
 }
 
 .UserDialog  form > .row.actions > button {
+	font-size: medium;
 	padding: .5em 1em;
 	border: 1px solid #eee;
 	border-radius: 3px;
