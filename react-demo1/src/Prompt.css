@@ -1,0 +1,12 @@
+.Prompt {
+	position: absolute;
+	top: 125%;
+    left: 10%;
+    font-size: 14px;
+    opacity: .4;   
+    outline: none;
+    border: none;
+    cursor: default;
+    z-index: 1;
+    display: inline;
+}

@@ -5,10 +5,24 @@ import './reset.css'
 import '../public/iconfont/iconfont.css' 
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
+import Prompt from './Prompt'
 import UserDialog from './UserDialog'
 import {getCurrentUser, signOut} from './leanCloud'
 
-
+import AV from './leanCloud'
+  // 声明类型
+  var TodoFolder = AV.Object.extend('TodoFolder');
+  // 新建对象
+  var todoFolder = new TodoFolder();
+  // 设置名称
+  todoFolder.set('name','工作');
+  // 设置优先级
+  todoFolder.set('priority',1);
+  todoFolder.save().then(function (todo) {
+    console.log('objectId is ' + todo.id);
+  }, function (error) {
+    console.error(error);
+  });
 
 class App extends Component {
 
@@ -17,8 +31,8 @@ class App extends Component {
     this.state={
         user: getCurrentUser()||{},
         newTodo: '',
-        todoList: []
-      
+        todoList: [],
+        prompt: ''
     }
   }
   render() {
@@ -42,11 +56,13 @@ class App extends Component {
           {this.state.user.id ? <span onClick={this.signOut.bind(this)}>LogOut</span>:null}
         </button>
         <div className="inputWrapper">
-        <span className="edit"><i className="iconfont icon-edit"></i></span>
-        <TodoInput content={this.state.newTodo}
-         onChange={this.changeTitle.bind(this)}
-         onSubmit={this.addTodo.bind(this)}
-         />
+          <span className="edit"><i className="iconfont icon-edit"></i></span>
+          <TodoInput content={this.state.newTodo}
+           onChange={this.changeTitle.bind(this)}
+
+           onKeyPress={this.submit.bind(this)}
+           />
+          <Prompt content={this.state.prompt} />
         </div>
         <ol className="todoList">
         {todos}
@@ -58,13 +74,29 @@ class App extends Component {
           onSignIn={this.onSignUpOrSignIn.bind(this)}
           /> 
         }
-        <span className="unfold"><i className="iconfont icon-moreunfold"></i></span>
+        <span className="unfold">{this.state.todoList.length > 9 ? <i className="iconfont icon-moreunfold"></i> : ''}</span>
       </div>
     )
   }
 
   componentDidiUpdate(){
 
+  }
+
+  submit (event) {
+    if(event.key === 'Enter'){
+      if(event.target.value.trim() !== ''){
+        this.addTodo(event)
+        this.setState({
+          prompt: ''
+        })
+      }else{
+        this.setState({
+          prompt: 'Edit something'
+        })
+      }
+      
+    }
   }
 
   signOut(){
@@ -112,7 +144,6 @@ class App extends Component {
       newTodo: '',
       todoList: this.state.todoList   //每次添加todo后重置todo
     })
-    console.log(this.state.todoList.length)
   }
 }
 

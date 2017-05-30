@@ -6,22 +6,22 @@ export default class TodoItem extends Component {
 	render(){
 		let iconAttachment = (
 			<div className="attachment">
-			<i className="iconfont icon-attachment"></i>
-			<span className='title'>{this.props.todo.title}</span>
+				<i className="iconfont icon-attachment"></i>
+				<div className='title'>{this.props.todo.title}</div>
 			</div>
 		)
 		let iconSuccess = (
 			<div className="success">
-			<i className="iconfont icon-success"></i>
-			<span className='title'>{this.props.todo.title}</span>
+				<i className="iconfont icon-success"></i>
+				<div className='title'>{this.props.todo.title}</div>
 			</div>
 		)
 		return (
 			<div className='TodoItem'>
 				<input className="check" type="checkbox" checked={this.props.todo.status==='completed'}
 				 onChange={this.toggle.bind(this)}/>
-				{this.props.todo.status !== 'completed' ? iconAttachment : null}
-				{this.props.todo.status === 'completed' ? iconSuccess : null}
+				
+				{this.props.todo.status === 'completed' ? iconSuccess : iconAttachment}
 						
 				<button className="delete" onClick={this.delete.bind(this)}><i className="iconfont icon-delete"></i></button>
 			</div>

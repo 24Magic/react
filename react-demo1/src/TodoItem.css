@@ -15,6 +15,7 @@
 	padding: .3em;
 	cursor: pointer;
 	opacity: 0;
+	z-index: 1;
 }
 
 .TodoItem .attachment,
@@ -22,11 +23,17 @@
 	width: 412px;
 }
 
+.TodoItem  .attachment .icon-attachment,
+.TodoItem  .success .icon-success {
+	position: absolute;
+}
+
 .TodoItem  .success .icon-success {
 	color: #ea6f5a;
 }
 
 .TodoItem .title{
+	margin-left: 15px;
 	font-size: 15px;
 	padding: 0 .5em;
 	white-space: nowrap;

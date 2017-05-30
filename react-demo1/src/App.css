@@ -11,6 +11,11 @@
   box-shadow: 0 0 1em hsla(0,0%,0%,0,0.15);
 }
 
+.App > .inputWrapper {
+  position: relative;
+  margin-bottom: 1em;
+}
+
 .App > .inputWrapper > .edit > .iconfont{
   font-size: 20px;
   opacity: .7
