@@ -7,7 +7,7 @@ import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import Prompt from './Prompt'
 import UserDialog from './UserDialog'
-import {getCurrentUser, signOut} from './leanCloud'
+import {getCurrentUser, signOut, TodoModel} from './leanCloud'
 
 
 class App extends Component {
@@ -27,9 +27,8 @@ class App extends Component {
       .map((item, index)=>{
       return (
         <li  >
-          <TodoItem  key={index} todo={item} onToggle={this.toggle.bind(this)}
+          <TodoItem todo={item} onToggle={this.toggle.bind(this)}
            onDelete={this.delete.bind(this)}/>
-           {console.log(this)}
         </li>
       )
     }) 
@@ -45,7 +44,6 @@ class App extends Component {
           <span className="edit"><i className="iconfont icon-edit"></i></span>
           <TodoInput content={this.state.newTodo}
            onChange={this.changeTitle.bind(this)}
-
            onKeyPress={this.submit.bind(this)}
            />
           <Prompt content={this.state.prompt} />
@@ -56,8 +54,8 @@ class App extends Component {
         {this.state.user.id ? 
           null : 
           <UserDialog 
-          onSignUp={this.onSignUpOrSignIn.bind(this)}
-          onSignIn={this.onSignUpOrSignIn.bind(this)}
+           onSignUp={this.onSignUpOrSignIn.bind(this)}
+           onSignIn={this.onSignUpOrSignIn.bind(this)}
           /> 
         }
         <span className="unfold">{this.state.todoList.length > 9 ? <i className="iconfont icon-moreunfold"></i> : ''}</span>
@@ -120,25 +118,25 @@ class App extends Component {
   }
 
   addTodo(event){
-    this.state.todoList.push({
-      id: idMaker(),
+    let newTodo = {
       title: event.target.value,
       status: null,
       deleted: false
+    }
+    TodoModel.create(newTodo, (id) => {
+      newTodo.id = id
+      this.state.todoList.push(newTodo)
+      this.setState({
+        newTodo: '',
+        todoList: this.state.todoList   //每次添加todo后重置todo
+      })
+    }, (error) => {
+      console.log(error)
     })
-    this.setState({
-      newTodo: '',
-      todoList: this.state.todoList   //每次添加todo后重置todo
-    })
+    
   }
 }
 
 export default App;
 
-let id = 0
 
-function idMaker(){
-  id +=1
-
-  return id
-}
