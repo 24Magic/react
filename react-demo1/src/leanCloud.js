@@ -42,7 +42,21 @@ export const TodoModel = {
 			errorFn && errorFn.call(null, error)
 		})
 	},
-	update(){
+	update({id, title, status, deleted}, successFn, errorFn){
+		// 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#更新对象
+		let todo = AV.Object.createWithoutData('Todo', id)
+
+		//满足局部更新
+		//满足置空title和status
+		title !== undefined && todo.set('title', title)
+		status !== undefined && todo.set('status', status)
+		deleted !== undefined && todo.set('deleted', deleted)
+
+		todo.save().then( (response) => {
+			successFn && successFn.call(null)
+		}, (error) => {
+			errorFn && errorFn.call(null, error)
+		})
 
 	},
 	destroy(todoId, successFn, errorFn){

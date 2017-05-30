@@ -111,9 +111,15 @@ class App extends Component {
     })
   }
 
-  toggle(e, todo){
-    todo.status = todo.status === 'completed' ? '' : 'completed'
-    this.setState(this.state)
+  toggle(todo){
+    let oldStatus = todo.status
+    
+    TodoModel.update(todo, () => {
+      this.setState(this.state)
+    }, (error) => {
+      todo.status = oldStatus
+      this.setState(this.state)
+    })
   }
 
   changeTitle(event){

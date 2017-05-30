@@ -30,7 +30,6 @@ export default class TodoItem extends Component {
 
 	delete(e){
 		this.props.onDelete(e, this.props.todo)
-		// this.state.todoList.splice(this.props.key, 1)
 	}
 
 	toggle(e){
