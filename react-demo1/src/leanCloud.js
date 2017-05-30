@@ -26,6 +26,14 @@ export const TodoModel = {
 		todo.set('title', title)
 		todo.set('status', status)
 		todo.set('deleted', deleted)
+		
+		//单用户权限设置
+		//只允许单一用户自己的todo
+		let acl = new AV.ACL()
+		acl.setPublicReadAccess(false)
+		acl.setWriteAccess(AV.User.current(), true)
+		todo.setACL(acl)
+
 		todo.save().then( (response) => {
 			successFn.call(null, response.id)
 		}, (error) => {
@@ -36,7 +44,7 @@ export const TodoModel = {
 
 	},
 	destroy(){
-		
+
 	}
 }
 

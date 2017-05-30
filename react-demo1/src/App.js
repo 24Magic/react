@@ -108,13 +108,11 @@ class App extends Component {
     todo.deleted = true
     
     this.setState(this.state)
-    console.log(this.props.key)
   }
 
   toggle(e, todo){
     todo.status = todo.status === 'completed' ? '' : 'completed'
     this.setState(this.state)
-    console.log(todo.status)
   }
 
   changeTitle(event){
