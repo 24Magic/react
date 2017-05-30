@@ -9,6 +9,8 @@ AV.init({
 export default AV
 
 export const TodoModel = {
+
+	//获取全部todo
 	getByUser(user, successFn, errorFn){
 		let query = new AV.Query('Todo');
 		query.find().then( (response) => {
@@ -26,7 +28,7 @@ export const TodoModel = {
 		todo.set('title', title)
 		todo.set('status', status)
 		todo.set('deleted', deleted)
-		
+
 		//单用户权限设置
 		//只允许单一用户自己的todo
 		let acl = new AV.ACL()
@@ -43,8 +45,15 @@ export const TodoModel = {
 	update(){
 
 	},
-	destroy(){
+	destroy(todoId, successFn, errorFn){
+		// 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#删除对象
 
+		let todo = AV.Object.createWithoutData('Todo', todoId)
+		todo.destroy().then( (response) => {
+			successFn && successFn.call(null)
+		}, (error) => {
+			errorFn && errorFn.call(null, error)
+		})
 	}
 }
 

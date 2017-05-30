@@ -28,10 +28,6 @@
 	position: absolute;
 }
 
-.TodoItem  .success {
-	opacity: .4;
-}
-
 .TodoItem  .success .icon-success {
 	color: #ea6f5a;
 }
