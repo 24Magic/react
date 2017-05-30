@@ -14,22 +14,33 @@
 	position: absolute;
 	padding: .3em;
 	cursor: pointer;
-	opacity: .3;
+	opacity: 0;
 }
 
-.TodoItem>.title{
-	flex-grow: 1;
+.TodoItem .attachment,
+.TodoItem .success {
+	width: 412px;
+}
+
+.TodoItem  .success .icon-success {
+	color: #ea6f5a;
+}
+
+.TodoItem .title{
 	font-size: 15px;
 	padding: 0 .5em;
-	width: 400px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	cursor: default;
 }
 
-.TodoItem>.title:hover {
+.TodoItem  .title:hover {
 	white-space: normal;
+}
+
+.TodoItem  .success .title {
+	text-decoration: line-through;
 }
 
 .TodoItem > .delete {
@@ -48,6 +59,3 @@
 	background-color: #fff;
 }
 
-.TodoItem > .title.active {
-	text-decoration: line-through;
-}

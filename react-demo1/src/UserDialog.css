@@ -9,6 +9,7 @@
 	justify-content: center;
 	align-items: center;
 	opacity: .7;
+	background: hsla(0, 0%, 0%, .4);
 }
 
 .UserDialog{
@@ -66,6 +67,12 @@
 .UserDialog  form > .row.actions{
 	transform: translateX(50%);
 	margin-left: -55px;
+}
+
+.UserDialog  form > .row.actions > a {
+	display: block;
+	margin-bottom: 15px;
+	transform: translateX(65px);
 }
 
 .UserDialog  form > .row.actions > button {

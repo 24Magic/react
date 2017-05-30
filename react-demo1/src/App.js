@@ -26,9 +26,10 @@ class App extends Component {
       .filter((item)=>!item.deleted)
       .map((item, index)=>{
       return (
-        <li key={index} >
-          <TodoItem todo={item} onToggle={this.toggle.bind(this)}
+        <li  >
+          <TodoItem  key={index} todo={item} onToggle={this.toggle.bind(this)}
            onDelete={this.delete.bind(this)}/>
+           {console.log(this)}
         </li>
       )
     }) 
@@ -81,14 +82,13 @@ class App extends Component {
 
   delete(event, todo){
     todo.deleted = true
+    
     this.setState(this.state)
-
+    console.log(this.props.key)
   }
 
   toggle(e, todo){
     todo.status = todo.status === 'completed' ? '' : 'completed'
-    e.parentNode.childNode('.title').style.textDecoration
-     = e.parentNode.childNode('.title').style.textDecoration === 'none' ? 'line-through' : 'none'
     this.setState(this.state)
     console.log(todo.status)
   }
@@ -112,7 +112,7 @@ class App extends Component {
       newTodo: '',
       todoList: this.state.todoList   //每次添加todo后重置todo
     })
-
+    console.log(this.state.todoList.length)
   }
 }
 
