@@ -2,6 +2,7 @@ import React,{ Component } from 'react'
 import './UserDialog.css'
 import {signUp, signIn, sendPasswordResetEmail} from './leanCloud'
 import SignUpForm from './SignUpForm'
+import SignInForm from './SignInForm'
 
 export default class UserDialog extends Component {
 
@@ -18,24 +19,6 @@ export default class UserDialog extends Component {
 		}
 	}
 	render(){
-
-		let signInForm = (
-			<form className="signIn" onSubmit={this.signIn.bind(this)} > {/* 登陆*/}
-				<div className="row">
-					<input placeholder="用户名" type="text" value={this.state.formData.username}
-					 onChange={this.changeFormData.bind(this, 'username')} />
-				</div>
-				<div className="row">
-					<input placeholder="密码" type="password" value={this.state.formData.password}
-					 onChange={this.changeFormData.bind(this, 'password')} />
-				</div>
-				<div className="row actions">
-					<a href="#" onClick={this.showForgotPassword.bind(this)}>忘记密码了?</a>
-					<button type="submit">登陆</button>
-
-				</div>
-			</form>
-		)
 
 		let signInOrSignUp = (
 			<div className="signInOrSignUp">
@@ -57,9 +40,17 @@ export default class UserDialog extends Component {
 					{this.state.selected === 'signUp' ? 
 						<SignUpForm formData={this.state.formData}
 						 onSubmit={this.signUp.bind(this)}
-						 onChange={this.changeFormData.bind(this)} />
+						 onChange={this.changeFormData.bind(this)} 
+						/>
 						: null}
-					{this.state.selected === 'signIn' ? signInForm : null}
+					{this.state.selected === 'signIn' ? 
+						<SignInForm formData={this.state.formData}
+						 onSubmit={this.signIn.bind(this)}
+						 onChange={this.changeFormData.bind(this)} 
+						 onForgotPassword={this.showForgotPassword.bind(this)}
+						/>
+						: null}
+					
 				</div>
 			</div>
 		)
