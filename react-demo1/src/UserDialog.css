@@ -21,23 +21,23 @@
 	box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
 }
 
-.UserDialog > .signInOrSignUp > nav {
+.UserDialog > .SignUpOrSignIn > nav {
 	display: flex;
 	padding: 1em;
 	margin-left: -2em;
 }
 
-.UserDialog > .signInOrSignUp > nav > label {
+.UserDialog > .SignUpOrSignIn > nav > label {
 	flex: 1;
 	margin-left: 2em;
 	cursor: pointer;
 }
 
-.UserDialog > .signInOrSignUp > nav > label > input {
+.UserDialog > .SignUpOrSignIn > nav > label > input {
 	display: none;
 }
 
-.UserDialog > .signInOrSignUp > nav > label > span:hover {
+.UserDialog > .SignUpOrSignIn > nav > label > span:hover {
 	border-bottom: 1px solid #333;
 }
 
