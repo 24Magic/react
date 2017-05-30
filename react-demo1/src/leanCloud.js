@@ -8,6 +8,38 @@ AV.init({
 
 export default AV
 
+export const TodoModel = {
+	getByUser(user, successFn, errorFn){
+		let query = new AV.Query('Todo');
+		query.find().then( (response) => {
+			let array = response.map( (t) => {
+				return {id: t.id, ...t.attributes}
+			})
+			successFn.call(null, array)
+		}, (error) => {
+			errorFn && errorFn.call(null, error)
+		})
+	},
+	create({status, title, deleted}, successFn, errorFn){
+		let Todo = AV.Object.extend('Todo')
+		let todo = new Todo()
+		todo.set('title', title)
+		todo.set('status', status)
+		todo.set('deleted', deleted)
+		todo.save().then( (response) => {
+			successFn.call(null, response.id)
+		}, (error) => {
+			errorFn && errorFn.call(null, error)
+		})
+	},
+	update(){
+
+	},
+	destroy(){
+		
+	}
+}
+
 export function signUp(username, password, email, successFn, errorFn){
 	//新建AVUser对象实例
 	var user = new AV.User()
