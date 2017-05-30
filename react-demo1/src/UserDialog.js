@@ -8,6 +8,7 @@ export default class UserDialog extends Component {
 		super(props)
 		this.state={
 			selected: 'signUp',
+			selectedTab: 'signInOrSignUp',
 			formData: {
 				username: '',
 				password: '',
@@ -36,6 +37,7 @@ export default class UserDialog extends Component {
 				</div>
 			</form>
 		)
+
 		let signInForm = (
 			<form className="signIn" onSubmit={this.signIn.bind(this)} > {/* 登陆*/}
 				<div className="row">
@@ -47,32 +49,58 @@ export default class UserDialog extends Component {
 					 onChange={this.changeFormData.bind(this, 'password')} />
 				</div>
 				<div className="row actions">
-					<a href="javascripts:;">忘记密码了?</a>
+					<a href="#" onClick={this.showForgotPassword.bind(this)}>忘记密码了?</a>
 					<button type="submit">登陆</button>
 
 				</div>
 			</form>
 		)
+
+		let signInOrSignUp = (
+			<div className="signInOrSignUp">
+				<nav>
+					<label>
+						<input type="radio" value="signUp"
+						 checked={this.state.selected === 'signUp'} 
+						 onChange={this.switch.bind(this)}
+						/><span>注册</span>
+					</label>
+					<label>
+						<input type="radio" value="signIn"
+						 checked={this.state.selected === 'signIn'} 
+						 onChange={this.switch.bind(this)}
+						/><span>登陆</span>
+					</label>
+				</nav>
+				<div className="panes">
+					{this.state.selected === 'signUp' ? signUpForm : null}
+					{this.state.selected === 'signIn' ? signInForm : null}
+				</div>
+			</div>
+		)
+
+		let forgotPassword = (
+			<div className="forgotPassword">
+				<p>重置密码</p>
+				<div className="panes">
+					<form className="forgotPassword" onSubmit={this.resetPassword.bind(this)} > {/* 登陆*/}
+						<div className="row">
+							<input placeholder="邮箱" type="text" value={this.state.formData.email}
+							 onChange={this.changeFormData.bind(this, 'email')} />
+						</div>
+						<div className="row actions">
+							<button type="submit">发送重置邮件</button>
+						</div>
+					</form>
+				</div>			
+			</div>
+		)
+
 		return (
 
 			<div className="UserDialog-Wrapper">
 				<div className="UserDialog">
-					<nav>
-						<label>						
-						<input type="radio" value="signUp" 
-						 checked={this.state.selected === 'signUp'}
-						 onChange={this.switch.bind(this)} /><span>注册</span>
-						</label>
-						<label>					
-						<input type="radio" value="signIn" 
-						 checked={this.state.selected === 'signIn'}
-						 onChange={this.switch.bind(this)} /><span>登陆</span>
-						</label>
-					</nav>
-					<div className="panes">		
-						{this.state.selected === 'signUp' ? signUpForm : null}
-						{this.state.selected === 'signIn' ? signInForm : null}
-					</div>
+					{this.state.selectedTab === 'signInOrSignUp' ? signInOrSignUp : forgotPassword}
 				</div>
 			</div>
 		)
@@ -166,6 +194,16 @@ export default class UserDialog extends Component {
 		let stateCopy = JSON.parse(JSON.stringify(this.state))	//因为不能直接修改this.state, 使用JSON深拷贝
 		stateCopy.formData[key] = e.target.value
 		this.setState(stateCopy)
+	}
+
+	showForgotPassword(){
+		let stateCopy = JSON.parse(JSON.stringify(this.state))
+		stateCopy.selectedTab = 'forgotPassword'
+		this.setState(stateCopy)
+	}
+
+	resetPassword(){
+
 	}
 
 }
