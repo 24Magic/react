@@ -86,6 +86,11 @@
 	color: #66ccff;
 }
 
+.UserDialog > .forgotPassword > .panes > form > .row.actions > a {
+	transform: translateX(37px);
+	font-size: 14px;
+}
+
 .UserDialog .panes > form > .row.actions > button {
 	font-size: medium;
 	padding: .5em 1em;
