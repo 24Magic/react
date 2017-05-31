@@ -22,6 +22,7 @@ export default class TodoItem extends Component {
 				 onChange={this.toggle.bind(this)}/>
 				
 				{this.props.todo.status === 'completed' ? iconSuccess : iconAttachment}
+				
 						
 				<button className="delete" onClick={this.delete.bind(this)}><i className="iconfont icon-delete"></i></button>
 			</div>

@@ -22,21 +22,21 @@ class App extends Component {
     }
     let user = getCurrentUser()
     if(user){
-      TodoModel.getByUser(user, (todos) => {
+      TodoModel.getByUser(user, (todos)=>{
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.todoList = todos
         this.setState(stateCopy)
       })
-    }
+    }   
   }
   render() {
     let todos = this.state.todoList
       .filter((item)=>!item.deleted)
       .map((item, index)=>{
       return (
-        <li  >
+        <li key={index}>
           <TodoItem todo={item} onToggle={this.toggle.bind(this)}
-           onDelete={this.delete.bind(this)}/>
+           onDelete={this.delete.bind(this)} />
         </li>
       )
     }) 
@@ -53,11 +53,11 @@ class App extends Component {
           <TodoInput content={this.state.newTodo}
            onChange={this.changeTitle.bind(this)}
            onKeyPress={this.submit.bind(this)}
-           />
+          />
           <Prompt content={this.state.prompt} />
         </div>
         <ol className="todoList">
-        {todos}
+          {todos}
         </ol>   
         {this.state.user.id ? 
           null : 
@@ -75,7 +75,7 @@ class App extends Component {
 
   }
 
-  submit (event) {
+    submit (event) {
     if(event.key === 'Enter'){
       if(event.target.value.trim() !== ''){
         this.addTodo(event)
@@ -102,6 +102,14 @@ class App extends Component {
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = user
     this.setState(stateCopy)
+    let users = getCurrentUser()
+    if (users) {
+      TodoModel.getByUser(users, (todos) => {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.todoList = todos
+        this.setState(stateCopy)
+      })
+    }
   }
 
   delete(event, todo){
@@ -111,8 +119,10 @@ class App extends Component {
     })
   }
 
-  toggle(todo){
+  toggle(event, todo){
+
     let oldStatus = todo.status
+    todo.status = todo.status === 'completed' ? '' : 'completed'
     
     TodoModel.update(todo, () => {
       this.setState(this.state)
@@ -133,7 +143,7 @@ class App extends Component {
   addTodo(event){
     let newTodo = {
       title: event.target.value,
-      status: null,
+      status: '',
       deleted: false
     }
     TodoModel.create(newTodo, (id) => {

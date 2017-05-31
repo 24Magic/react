@@ -1,4 +1,6 @@
 import AV from 'leancloud-storage'
+
+
 var APP_ID = '0xiWf8mAkk8MkOG1jE4yYMSm-gzGzoHsz';
 var APP_KEY = 'qKP4VqeNcwTpulqS6Ef5OXfW';
 AV.init({
@@ -8,17 +10,19 @@ AV.init({
 
 export default AV
 
+//所有跟Todo相关的leanCloud操作都放在TodoModel里面
 export const TodoModel = {
 
 	//获取全部todo
 	getByUser(user, successFn, errorFn){
-		let query = new AV.Query('Todo');
-		query.find().then( (response) => {
-			let array = response.map( (t) => {
+		let query = new AV.Query('Todo')
+		query.equalTo('deleted', false)
+		query.find().then( function(response) {
+			let array = response.map( function(t) {
 				return {id: t.id, ...t.attributes}
 			})
 			successFn.call(null, array)
-		}, (error) => {
+		}, function(error) {
 			errorFn && errorFn.call(null, error)
 		})
 	},
@@ -34,11 +38,12 @@ export const TodoModel = {
 		let acl = new AV.ACL()
 		acl.setPublicReadAccess(false)
 		acl.setWriteAccess(AV.User.current(), true)
+		acl.setReadAccess(AV.User.current(), true)
 		todo.setACL(acl)
 
-		todo.save().then( (response) => {
+		todo.save().then( function(response) {
 			successFn.call(null, response.id)
-		}, (error) => {
+		}, function(error) {
 			errorFn && errorFn.call(null, error)
 		})
 	},
@@ -52,22 +57,17 @@ export const TodoModel = {
 		status !== undefined && todo.set('status', status)
 		deleted !== undefined && todo.set('deleted', deleted)
 
-		todo.save().then( (response) => {
+		todo.save().then( function(response) {
 			successFn && successFn.call(null)
-		}, (error) => {
+		}, function(error) {
 			errorFn && errorFn.call(null, error)
 		})
 
 	},
 	destroy(todoId, successFn, errorFn){
-		// 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#删除对象
 
-		let todo = AV.Object.createWithoutData('Todo', todoId)
-		todo.destroy().then( (response) => {
-			successFn && successFn.call(null)
-		}, (error) => {
-			errorFn && errorFn.call(null, error)
-		})
+		//不应该删除数据,而是将删除的数据进行标记
+		TodoModel.update({id: todoId, deleted: true}, successFn, errorFn)
 	}
 }
 
@@ -98,29 +98,29 @@ export function signIn(username, password, successFn, errorFn){
 	})
 }
 
-export function getCurrentUser(){
+export function getCurrentUser () {
 	let user = AV.User.current()
 	if (user){
 		return getUserFromAVUser(user)
-	}else{
+	} else {
 		return null
 	}
 }
 
-export function signOut(){
+export function signOut () {
 	AV.User.logOut()
 	return undefined
 }
 
-export function sendPasswordResetEmail(email, successFn, errorFn){
-	AV.User.requestPasswordReset(email).then(function(success){
+export function sendPasswordResetEmail (email, successFn, errorFn){
+	AV.User.requestPasswordReset(email).then(function (success){
 		successFn.call()
 	},function(error){
 		errorFn.call(null, error)
 	})
 }
 
-function getUserFromAVUser(AVUser){
+function getUserFromAVUser (AVUser) {
 	return {
 		id: AVUser.id,
 		...AVUser.attributes
