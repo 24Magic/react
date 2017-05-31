@@ -8,6 +8,7 @@ import TodoItem from './TodoItem'
 import Prompt from './Prompt'
 import UserDialog from './UserDialog'
 import {getCurrentUser, signOut, TodoModel} from './leanCloud'
+import FreeScrollBar from 'react-free-scrollbar'
 
 
 class App extends Component {
@@ -42,12 +43,20 @@ class App extends Component {
     }) 
 
     return (
-      <div className="App">
+      <div className="container">
+      {this.state.user.id ?
+        <div className="App">
         <div className="bigTitle"><span>{this.state.user.username || '我'}</span> の Todo       
         </div>
-        <button className="logOut">
-          {this.state.user.id ? <span onClick={this.signOut.bind(this)}>LogOut</span>:null}
-        </button>
+        
+        {this.state.user.id ? 
+          <button className="logOut">
+            <span onClick={this.signOut.bind(this)}>LogOut</span>
+          </button>
+          :
+          null
+        }
+        
         <div className="inputWrapper">
           <span className="edit"><i className="iconfont icon-edit"></i></span>
           <TodoInput content={this.state.newTodo}
@@ -57,16 +66,20 @@ class App extends Component {
           <Prompt content={this.state.prompt} />
         </div>
         <ol className="todoList">
+          <FreeScrollBar>
           {todos}
+          </FreeScrollBar>
+          
         </ol>   
-        {this.state.user.id ? 
-          null : 
+        
+        <span className="unfold">{todos.length > 8 ? <i className="iconfont icon-moreunfold"></i> : ''}</span>
+        </div>
+         :
           <UserDialog 
            onSignUp={this.onSignUpOrSignIn.bind(this)}
            onSignIn={this.onSignUpOrSignIn.bind(this)}
           /> 
         }
-        <span className="unfold">{this.state.todoList.length > 9 ? <i className="iconfont icon-moreunfold"></i> : ''}</span>
       </div>
     )
   }
