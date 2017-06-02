@@ -80,7 +80,7 @@
 }
 
 .App > .bigTitle > span {
-  color: #66ccff;
+  color: rgb(38, 163, 130);
 }
 
 .App > .logOut > span {
@@ -100,5 +100,5 @@
 .App > .unfold > .iconfont {
   font-size: 26px;
   font-weight: 700;
-  color: #66ccff;
+  color: rgb(38, 163, 130);
 }
