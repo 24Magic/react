@@ -2,18 +2,18 @@
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	margin-top: -98px;
-	margin-left: -125px;
+	margin-top: -169px;
+	margin-left: -175px;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	opacity: .7;
+	
 	background: hsla(0, 0%, 0%, .4);
 }
 
 .UserDialog {
-	width: 250px;
+	width: 350px;
 	font-size: 15px;
 	background-color: #fff;
 	border: 1px solid #eee;
@@ -25,13 +25,23 @@
 	display: flex;
 	padding: 1em;
 	margin-left: -2em;
+	margin-bottom: 1em;
 }
 
 .UserDialog > .SignUpOrSignIn > nav > label {
 	flex: 1;
 	margin-left: 2em;
+	font-size: 17px;
 	cursor: pointer;
+	z-index: 1;
 }
+
+.UserDialog > .SignUpOrSignIn > nav > label:first-child {
+	transform: translateX(100px);
+	z-index: 0;
+}
+
+
 
 .UserDialog > .SignUpOrSignIn > nav > label > input {
 	display: none;
@@ -42,18 +52,14 @@
 }
 
 .UserDialog > .forgotPassword > p {
-	margin: 10px;
+	margin: 1em;
 	text-align: center;
-	font-size: 16px;
+	font-size: 17px;
 }
 
 .UserDialog .panes {
 	padding: 0 1em 1em;
 	font-size: small;
-}
-
-.UserDialog .panes > form > div {
-	margin-top: 5px;
 }
 
 .UserDialog .panes > form > div > input {
@@ -67,36 +73,68 @@
 }
 
 .UserDialog .panes > form > .row {
+	position: relative;
 	padding: .5em 0;
+	margin-bottom: 3em;
+}
+
+.UserDialog .panes > form > .row > span {
+	position: absolute;
+	top: 35px;
+	left: 10px;
+	width: 100%;
+	font-size: 12px;
+	color: #909090;
+	display: none;
+	transition: all .3s;
+}
+
+.UserDialog .panes > form > .row > span.active2{
+	display: block;
+}
+
+.UserDialog .panes > form > .row > div {
+	position: absolute;
+	font-size: 13px;
+	color: #909090;
+	top: 10px;
+	left: 5px;
+	transition: all .3s;
+	z-index: -1;
+}
+
+.UserDialog .panes > form > .row > div.active1 {
+	top: -17px;
+	font-size: 17px;
+	z-index: 0;
+	color: #f06d6a;
 }
 
 .UserDialog .panes > form > .row.actions {
-	transform: translateX(50%);
-	margin-left: -55px;
+	top: .5em;
+	left: 50%;
+	width: 200px;
+	margin-left: -100px;
 }
 
-.UserDialog > .forgotPassword > .panes > form > .row.actions {
-	margin-left: -128px;
-}
+
 
 .UserDialog .panes > form > .row.actions > a {
-	display: block;
-	margin-bottom: 15px;
-	transform: translateX(65px);
+	position: absolute;
+	top: -2.2em;
+	right: -4em;
+	font-size: 14px;
 	color: #66ccff;
 }
 
-.UserDialog > .forgotPassword > .panes > form > .row.actions > a {
-	transform: translateX(37px);
-	font-size: 14px;
-}
 
 .UserDialog .panes > form > .row.actions > button {
-	font-size: medium;
+	font-size: 17px;
+	width: 100%;
 	padding: .5em 1em;
-	border: 1px solid #eee;
+	border: 1px solid #ddd;
 	border-radius: 3px;
-	background-color: #eee;
+	background-color: #ddd;
 	outline: none;
 	cursor: pointer;
 	transition: all .3s;

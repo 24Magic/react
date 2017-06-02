@@ -1,0 +1,8 @@
+.Username {
+	position: absolute;
+	font-size: 13px;
+	color: #404040;
+	top: 10px;
+	transition: all .3s;
+}
+

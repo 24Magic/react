@@ -46,7 +46,7 @@ class App extends Component {
       <div className="container">
       {this.state.user.id ?
         <div className="App">
-        <div className="bigTitle"><span>{this.state.user.username || '我'}</span> の Todo       
+        <div className="bigTitle">Welcome <span>{this.state.user.username || ''}</span>      
         </div>
         
         {this.state.user.id ? 
@@ -88,7 +88,12 @@ class App extends Component {
 
   }
 
-    submit (event) {
+  submit (event) {
+    if(event.target.value.trim() !== ''){
+      this.setState({
+        prompt: ''
+      })
+    }
     if(event.key === 'Enter'){
       if(event.target.value.trim() !== ''){
         this.addTodo(event)

@@ -33,6 +33,11 @@
   opacity: .7;
 }
 
+.App > .todoList > .FreeScrollBar {
+  border-left: 2px solid #eee !important;
+  border-top: 2px solid #eee;
+}
+
 .App > .todoList  li {
   width: 475px;
 }
@@ -58,8 +63,10 @@
 }
 
 .App > .bigTitle {
+  position: relative;
+  left: 50%;
   margin: 1em;
-  margin-left: 34%;
+  margin-left: -6.5em;
   text-align: center;
   font-size: 18px;
   opacity: .7;
@@ -85,8 +92,7 @@
   position: absolute;
   left: 50%;
   bottom: 2%;
-  margin-left: -13px;
-  
+  margin-left: -13px;  
   opacity: .7;
 }
 
