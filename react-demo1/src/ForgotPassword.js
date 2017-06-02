@@ -32,22 +32,20 @@ export default class ForgotPasswordForm extends Component {
 		)
 	}
 
-	focus(e){
-		
+	focus(e){		
 		if(e.type === 'focus'){
 			this.setState({
 				className: 'active1'
 			})
 		}
-
 	}
 
-	blur(e){
-		
+	blur(e){		
 		if(e.type === 'blur'){
 			this.setState({
 				className: ''
 			})
 		}
 	}
+	
 }

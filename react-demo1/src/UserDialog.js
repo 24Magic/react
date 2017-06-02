@@ -94,14 +94,7 @@ export default class UserDialog extends Component {
 
 		if(this.checkUsername(username) && this.checkPassword(password) && this.checkEmail(email)){
 			return true
-		}
-		
-
-		
-		
-
-				
-		
+		}		
 	}
 
 	signUp(e){
